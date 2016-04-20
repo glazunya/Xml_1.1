@@ -12,6 +12,10 @@ using System.Web.UI.WebControls;
         {
 
         }
+        public void delet_Button_click(Object sender, EventArgs e)
+        {
+            this.Visible = false;
+        }
         public void Initialize_Component(Parameter el)
         {
             Id.Text = el.Id;

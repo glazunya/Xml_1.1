@@ -10,6 +10,18 @@ using System.Xml.Serialization;
 
     public partial class Main : System.Web.UI.Page
     {
+        public void add_button_click(object sender, EventArgs e)
+        {
+            Parameter new_param = new Parameter();
+            new_param.Id=
+        }
+
+        public void new_button_click(Object sender, EventArgs e)
+        {
+            var control = (default_control)LoadControl(@"~/default_control.ascx");
+            new_container.Controls.Add(control);
+            add_button.Visible = true;
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -18,9 +30,17 @@ using System.Xml.Serialization;
             
             foreach (Parameter el in param)
             {
-                var control = (param_control)LoadControl(@"~/param_control.ascx");
-                control.Initialize_Component(el);
-                form1.Controls.Add(control);
+                if (el.Type == "System.Boolean")
+                {
+                    var control = (boll_param_control)LoadControl(@"~/boll_param_control.ascx");
+                    control.Initialize_Component(el);
+                    divContainer.Controls.Add(control);
+                }
+                else {
+                    var control = (param_control)LoadControl(@"~/param_control.ascx");
+                    control.Initialize_Component(el);
+                    divContainer.Controls.Add(control);
+                }
             }
         }
     }
